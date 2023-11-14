@@ -65,7 +65,7 @@ const FlashSaleBlock: React.FC<Props> = ({
       ) : (
         <SellWithProgress
           carouselBreakpoint={flashSaleCarouselBreakpoint}
-          products={data.products}
+          products={data?.products}
           loading={isLoading}
           className="col-span-full xl:col-span-1 lg:mb-1 xl:mb-0"
         />
