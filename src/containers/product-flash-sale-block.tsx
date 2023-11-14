@@ -14,7 +14,6 @@ interface ProductsProps {
 
 // Renderer callback with condition
 const renderer = ({ days, completed }: any) => {
-  console.log("days", days);
   if (completed) {
     // Render a completed state
     return <span>Time Over!</span>;
@@ -60,7 +59,6 @@ const ProductsFlashSaleBlock: React.FC<ProductsProps> = ({
   const { data, isLoading, error } = useFlashSaleProductsQuery({
     limit: 10,
   });
-  console.log("data", data);
   return (
     <div
       className={`${className} border border-gray-300 rounded-md pt-5 md:pt-6 lg:pt-7 pb-5 lg:pb-7 px-4 md:px-5 lg:px-7`}

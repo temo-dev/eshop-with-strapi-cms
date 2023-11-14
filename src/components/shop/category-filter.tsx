@@ -22,7 +22,7 @@ export const CategoryFilter = () => {
     setFormState(selectedCategories);
   }, [query?.category]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading || isLoading) return <p>Loading...</p>;
 
   function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
     const { value } = e.currentTarget;

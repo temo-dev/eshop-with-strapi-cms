@@ -1,11 +1,11 @@
 import SellWithProgress from "@components/common/sale-with-progress";
-// import SectionHeader from "@components/common/section-header";
-// import ProductCard from "@components/product/product-card";
+import SectionHeader from "@components/common/section-header";
+import ProductCard from "@components/product/product-card";
 import { useWindowSize } from "@utils/use-window-size";
 import { useFlashSaleProductsQuery } from "@framework/product/get-all-flash-sale-products";
-// import { useTopSellerProductsQuery } from "@framework/product/get-all-top-seller-products";
-// import ProductListFeedLoader from "@components/ui/loaders/product-list-feed-loader";
-// import Alert from "@components/ui/alert";
+import { useTopSellerProductsQuery } from "@framework/product/get-all-top-seller-products";
+import ProductListFeedLoader from "@components/ui/loaders/product-list-feed-loader";
+import Alert from "@components/ui/alert";
 
 interface Props {
   className?: string;
@@ -17,9 +17,9 @@ const ProductsWithFlashSale: React.FC<Props> = ({
   carouselBreakpoint,
 }) => {
   const { width } = useWindowSize();
-  // const { data, isLoading, error } = useTopSellerProductsQuery({
-  //   limit: 10,
-  // });
+  const { data, isLoading, error } = useTopSellerProductsQuery({
+    limit: 10,
+  });
 
   const { data: flashSellProduct, isLoading: flashSellProductLoading } =
     useFlashSaleProductsQuery({
@@ -29,7 +29,7 @@ const ProductsWithFlashSale: React.FC<Props> = ({
     <div
       className={`grid grid-cols-1 gap-5 md:gap-14 xl:gap-7 xl:grid-cols-7 2xl:grid-cols-9 ${className}`}
     >
-      {/* <div className="xl:col-span-5 2xl:col-span-7 border border-gray-300 rounded-lg pt-6 md:pt-7 lg:pt-9 xl:pt-7 2xl:pt-9 px-4 md:px-5 lg:px-7 pb-5 lg:pb-7">
+      <div className="xl:col-span-5 2xl:col-span-7 border border-gray-300 rounded-lg pt-6 md:pt-7 lg:pt-9 xl:pt-7 2xl:pt-9 px-4 md:px-5 lg:px-7 pb-5 lg:pb-7">
         <SectionHeader
           sectionHeading="text-top-products"
           categorySlug="/search"
@@ -37,7 +37,7 @@ const ProductsWithFlashSale: React.FC<Props> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 xl:gap-7 xl:-mt-1.5 2xl:mt-0">
           {error ? (
             <Alert message={error?.message} />
-          ) : isLoading && !data?.length ? (
+          ) : isLoading && !data ? (
             <ProductListFeedLoader limit={4} />
           ) : (
             data?.map((product) => (
@@ -52,7 +52,7 @@ const ProductsWithFlashSale: React.FC<Props> = ({
             ))
           )}
         </div>
-      </div> */}
+      </div>
       {width < 1280 ? (
         <SellWithProgress
           carouselBreakpoint={carouselBreakpoint}

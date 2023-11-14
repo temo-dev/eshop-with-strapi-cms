@@ -1,20 +1,20 @@
-import Image from 'next/image';
-import { useUI } from '@contexts/ui.context';
-import usePrice from '@framework/product/use-price';
-import { Product } from '@framework/types';
+import Image from "next/image";
+import { useUI } from "@contexts/ui.context";
+import usePrice from "@framework/product/use-price";
+import { Product } from "@framework/types";
 
 interface ProductProps {
   product: Product;
   index: number;
-  imgLoading?: 'eager' | 'lazy';
-  variant?: 'left' | 'center' | 'combined';
+  imgLoading?: "eager" | "lazy";
+  variant?: "left" | "center" | "combined";
 }
 
 const ProductOverlayCard: React.FC<ProductProps> = ({
   product,
   index,
-  variant = 'left',
-  imgLoading = 'lazy',
+  variant = "left",
+  imgLoading = "lazy",
 }) => {
   // const size =
   //   (variant === 'center' && index === 1) || (variant === 'left' && index === 0)
@@ -30,35 +30,35 @@ const ProductOverlayCard: React.FC<ProductProps> = ({
 
   let classes;
 
-  if (variant === 'left' && index === 0) {
-    classes = 'row-span-full lg:row-span-2 col-span-full lg:col-span-2';
+  if (variant === "left" && index === 0) {
+    classes = "row-span-full lg:row-span-2 col-span-full lg:col-span-2";
     size = 620;
-  } else if (variant === 'center' && index === 1) {
-    classes = 'row-span-full lg:row-span-2 col-span-full lg:col-span-2';
+  } else if (variant === "center" && index === 1) {
+    classes = "row-span-full lg:row-span-2 col-span-full lg:col-span-2";
     size = 620;
-  } else if (variant === 'combined') {
+  } else if (variant === "combined") {
     if (index === 0) {
-      classes = 'col-span-2 lg:row-span-2 col-span-full lg:col-span-2';
+      classes = "col-span-2 lg:row-span-2 col-span-full lg:col-span-2";
       size = 620;
     } else if (index === 2) {
       classes = `col-span-2 lg:col-start-4 lg:col-end-5 lg:row-start-1 lg:row-end-3`;
       size = 620;
     } else {
-      classes = 'col-span-2 lg:col-span-1';
+      classes = "col-span-2 lg:col-span-1";
     }
   } else {
-    classes = 'col-span-2 lg:col-span-1';
+    classes = "col-span-2 lg:col-span-1";
   }
 
   const { openModal, setModalView, setModalData } = useUI();
   const { price, basePrice, discount } = usePrice({
     amount: product.sale_price ? product.sale_price : product.price,
     baseAmount: product.price,
-    currencyCode: 'USD',
+    currencyCode: "USD",
   });
   function handlePopupView() {
     setModalData({ data: product });
-    setModalView('PRODUCT_VIEW');
+    setModalView("PRODUCT_VIEW");
     return openModal();
   }
 
@@ -74,18 +74,18 @@ const ProductOverlayCard: React.FC<ProductProps> = ({
         <Image
           src={
             product?.image?.original ??
-            '/assets/placeholder/products/product-featured.png'
+            "/assets/placeholder/products/product-featured.png"
           }
           width={size}
           height={size}
           loading={imgLoading}
-          alt={product?.name || 'Product Image'}
+          alt={product?.name || "Product Image"}
           className="transition duration-500 ease-in-out transform group-hover:scale-110"
         />
       </div>
       {discount && (
         <span className="absolute top-3.5 md:top-5 3xl:top-7 start-3.5 md:start-5 3xl:start-7 bg-heading text-white text-10px md:text-sm leading-5 rounded-md inline-block px-2 xl:px-3 pt-0.5 pb-1">
-          {discount}
+          {`- ${discount}`}
         </span>
       )}
 

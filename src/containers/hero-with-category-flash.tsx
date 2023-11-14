@@ -127,7 +127,7 @@ export function SellWithProgressCardSection() {
         />
       ) : (
         <SellWithProgress
-          products={data.products}
+          products={data?.products}
           productVariant="gridSlim"
           loading={isLoading}
           imgWidth={330}

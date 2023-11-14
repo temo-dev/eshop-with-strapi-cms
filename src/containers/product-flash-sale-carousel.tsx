@@ -110,7 +110,7 @@ const ProductsFlashSaleCarousel: React.FC<ProductsProps> = ({
                   uniqueKey={`flash-sale-${idx}`}
                 />
               ))
-            : data?.map((product: any) => (
+            : data?.products.map((product: any) => (
                 <SwiperSlide key={`product--key-${product.id}`}>
                   <ProductCard
                     product={product}
