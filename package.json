@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "clean": "rimraf \"{.next,dist,build,out,node_modules}\"",
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "cross-env NODE_OPTIONS='--openssl-legacy-provider' next dev",
+    "build": "cross-env NODE_OPTIONS='--openssl-legacy-provider' next build",
     "start": "next start"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "body-scroll-lock": "^4.0.0-beta.0",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "framer-motion": "^4.1.17",
     "js-cookie": "^3.0.0",
     "lodash": "^4.17.21",
